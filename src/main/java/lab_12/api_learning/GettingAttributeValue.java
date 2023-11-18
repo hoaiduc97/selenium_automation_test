@@ -17,7 +17,7 @@ public class GettingAttributeValue {
         try {
             By partialLinkTextSel = By.partialLinkText("Selenium");
             WebElement partialLinkTextEle = driver.findElement(partialLinkTextSel);
-            System.out.println(driver.findElement(partialLinkTextSel).getAttribute("target"));
+            System.out.println(partialLinkTextEle.getAttribute("target"));
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
