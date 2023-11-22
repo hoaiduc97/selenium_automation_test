@@ -1,4 +1,4 @@
-package lab_12.api_learning.support.ui;
+package lab_12.support.ui;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

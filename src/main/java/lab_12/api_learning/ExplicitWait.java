@@ -1,11 +1,9 @@
 package lab_12.api_learning;
 
-import lab_12.api_learning.support.ui.WaitForElementEnable;
+import lab_12.support.ui.WaitForElementEnable;
 import lab_12.driver.DriverFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
