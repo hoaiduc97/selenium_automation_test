@@ -1,20 +1,14 @@
 package web_automation.tests.global.footer;
 
-import org.openqa.selenium.WebDriver;
-import web_automation.driver.DriverFactory;
+import org.testng.annotations.Test;
 import web_automation.test_flow.global.FooterTestFlow;
+import web_automation.tests.BaseTest;
 
-public class FooterTest {
-    public static void main(String[] args) {
-        WebDriver driver = DriverFactory.getWebDriver();
+public class FooterTest extends BaseTest {
+    @Test
+    public void testHomepageFooter(){
         driver.get("https://demowebshop.tricentis.com/");
-        try {
-            FooterTestFlow footerTestFlow = new FooterTestFlow(driver);
-            footerTestFlow.verifyFooterComponent();
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            driver.quit();
-        }
+        FooterTestFlow footerTestFlow = new FooterTestFlow(driver);
+        footerTestFlow.verifyFooterComponent();
     }
 }
