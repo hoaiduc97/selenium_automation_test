@@ -25,8 +25,8 @@ public class FooterTestFlow {
     }
 
     private void verifyInformationColumn(FooterColumnComponent informationColumnComponent) {
-        List<String> expectedLinkTexts = Arrays.asList("Sitemap", "Shipping & Returns", "Privacy Note", "Condition of Use", "About us", "Contact Us");
-        List<String> expectedHrefs = Arrays.asList("/sitemap", "/shipping & returns", "/privacy-note", "/condition-of-use", "/about-us", "/contact-us");
+        List<String> expectedLinkTexts = Arrays.asList("Sitemap", "Shipping & Returns", "Privacy Notice", "Conditions of Use", "About us", "Contact us");
+        List<String> expectedHrefs = Arrays.asList("sitemap", "shipping-returns", "privacy-policy", "conditions-of-use", "about-us", "contactus");
         testFooterColumn(informationColumnComponent, expectedLinkTexts, expectedHrefs);
     }
 
