@@ -2,8 +2,11 @@ package web_automation.models.pages;
 
 import org.openqa.selenium.By;
 import web_automation.models.components.Component;
+import web_automation.models.components.global.CategoryItemComponent;
 import web_automation.models.components.global.footer.FooterComponent;
 import org.openqa.selenium.WebDriver;
+
+import java.util.List;
 
 public class BasePage extends Component {
     protected final WebDriver driver;
@@ -16,5 +19,9 @@ public class BasePage extends Component {
 
     public FooterComponent footerComponent(){
         return findComponent(FooterComponent.class);
+    }
+
+    public List<CategoryItemComponent> categoryItemComponents(){
+        return findComponents(CategoryItemComponent.class);
     }
 }
