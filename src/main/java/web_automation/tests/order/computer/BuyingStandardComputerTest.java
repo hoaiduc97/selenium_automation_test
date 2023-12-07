@@ -1,8 +1,7 @@
-package web_automation.models.components.order.computer;
+package web_automation.tests.order.computer;
 
 import org.testng.annotations.Test;
 import web_automation.models.components.order.StandardComputerComponent;
-import web_automation.models.pages.BasePage;
 import web_automation.test_flow.computer.OrderComputerFlow;
 import web_automation.tests.BaseTest;
 

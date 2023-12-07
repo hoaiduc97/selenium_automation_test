@@ -2,7 +2,6 @@ package web_automation.models.components.order;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import web_automation.models.components.Component;
 import web_automation.models.components.ComponentCSSSelector;
 
 @ComponentCSSSelector(".product-essential")
