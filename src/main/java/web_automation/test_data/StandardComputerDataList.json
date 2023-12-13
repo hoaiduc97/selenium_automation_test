@@ -1,0 +1,16 @@
+[
+  {
+    "processor" : "2.2GHZ",
+    "ram" : "2GB",
+    "hdd" : "320 GB",
+    "os" : "Ubuntu",
+    "software" : "Microsoft Office"
+  },
+  {
+    "processor" : "2.5GHZ",
+    "ram" : "8 GB",
+    "hdd" : "400 TB",
+    "os" : "Windows 10",
+    "software" : "Acrobat Reader"
+  }
+]
