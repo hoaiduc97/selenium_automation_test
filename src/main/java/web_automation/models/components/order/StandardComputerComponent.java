@@ -10,7 +10,7 @@ import java.util.List;
 
 @ComponentCSSSelector(".product-essential")
 public class StandardComputerComponent extends ComputerEssentialComponent{
-    private static final By productAttrSel = By.cssSelector("select[name^='product_attribute'");
+    private static final By productAttrSel = By.cssSelector("select[name^='product_attribute']");
 
     public StandardComputerComponent(WebDriver driver, WebElement component) {
         super(driver, component);
@@ -39,7 +39,7 @@ public class StandardComputerComponent extends ComputerEssentialComponent{
             String currentOptionText = optionEle.getText();
             String optionTextWithoutSpace = currentOptionText.trim().replace(" ", "");
             if(optionTextWithoutSpace.startsWith(type)){
-                fullStrOptions = optionTextWithoutSpace;
+                fullStrOptions = currentOptionText;
                 break;
             }
         }

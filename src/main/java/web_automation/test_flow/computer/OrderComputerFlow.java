@@ -37,18 +37,18 @@ public class OrderComputerFlow<T extends ComputerEssentialComponent> {
         ComputerEssentialComponent computerEssentialComponent = new ComputerItemDetailPage(driver).computerComp(computerEssentialCompClass);
         computerEssentialComponent.unselectDefaultOptions();
         String processorFullStr = computerEssentialComponent.selectProcessorType(this.computerData.getProcessor());
-        double processorAdditionalPrice = extracAdditionalPrice(processorFullStr);
+        double processorAdditionalPrice = extractAdditionalPrice(processorFullStr);
         String ramFullStr = computerEssentialComponent.selectRAMType(this.computerData.getRam());
-        double ramAdditionalPrice = extracAdditionalPrice(ramFullStr);
+        double ramAdditionalPrice = extractAdditionalPrice(ramFullStr);
         String hddFullStr = computerEssentialComponent.selectHDD(this.computerData.getHdd());
-        double hddAdditionalPrice = extracAdditionalPrice(hddFullStr);
+        double hddAdditionalPrice = extractAdditionalPrice(hddFullStr);
         String softwareFullStr = computerEssentialComponent.selectHDD(this.computerData.getSoftware());
-        double softwareAdditionalPrice = extracAdditionalPrice(softwareFullStr);
+        double softwareAdditionalPrice = extractAdditionalPrice(softwareFullStr);
         double osAdditionalPrice = 0;
         String osDataOption = this.computerData.getOS();
         if(osDataOption != null){
             String osFullStr = computerEssentialComponent.selectOS(osDataOption);
-            osAdditionalPrice = extracAdditionalPrice(osFullStr);
+            osAdditionalPrice = extractAdditionalPrice(osFullStr);
         }
         double additionalPrice = processorAdditionalPrice + ramAdditionalPrice + hddAdditionalPrice +softwareAdditionalPrice + osAdditionalPrice;
 
@@ -75,7 +75,7 @@ public class OrderComputerFlow<T extends ComputerEssentialComponent> {
         }
     }
 
-    private double extracAdditionalPrice(String optionStr) {
+    private double extractAdditionalPrice(String optionStr) {
         double price = 0;
         Pattern pattern = Pattern.compile("\\[(.*?)\\]");
         Matcher matcher = pattern.matcher(optionStr);

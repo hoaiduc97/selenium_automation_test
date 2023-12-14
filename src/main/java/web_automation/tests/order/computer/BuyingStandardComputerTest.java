@@ -12,7 +12,7 @@ public class BuyingStandardComputerTest extends BaseTest {
     @Test(dataProvider = "computerData")
     public void testBuyingStandardComputer(ComputerData computerData ){
         driver.get("https://demowebshop.tricentis.com/build-your-own-computer");
-        OrderComputerFlow orderComputerFlow = new OrderComputerFlow<>(driver, StandardComputerComponent.class, computerData);
+        OrderComputerFlow<StandardComputerComponent> orderComputerFlow = new OrderComputerFlow<>(driver, StandardComputerComponent.class, computerData);
         orderComputerFlow.buildCompSpec();
         orderComputerFlow.addItemToCart();
         orderComputerFlow.verifyShoppingCartPage();
@@ -20,7 +20,7 @@ public class BuyingStandardComputerTest extends BaseTest {
 
     @DataProvider()
     public ComputerData[] computerData(){
-        String relativeComputerLocation = "/src/main/java/web_automation/test_data/CheapComputerDataList.json";
+        String relativeComputerLocation = "/src/main/java/web_automation/test_data/StandardComputerDataList.json";
         return DataObjectBuilder.buildDataObjectForm(relativeComputerLocation, ComputerData[].class);
     }
 }
