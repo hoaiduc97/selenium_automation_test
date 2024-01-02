@@ -1,4 +1,4 @@
-package web_automation.test_data;
+package web_automation.test_data.computer;
 
 public class ComputerData {
     private String processor;

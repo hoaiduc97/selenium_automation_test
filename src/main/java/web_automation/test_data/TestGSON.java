@@ -1,6 +1,7 @@
 package web_automation.test_data;
 
 import com.google.gson.Gson;
+import web_automation.test_data.computer.ComputerData;
 
 public class TestGSON {
     public static void main(String[] args) {

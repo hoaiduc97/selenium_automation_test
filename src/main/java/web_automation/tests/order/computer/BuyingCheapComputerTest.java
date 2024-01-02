@@ -3,7 +3,7 @@ package web_automation.tests.order.computer;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import web_automation.models.components.order.CheapComputerComponent;
-import web_automation.test_data.ComputerData;
+import web_automation.test_data.computer.ComputerData;
 import web_automation.test_data.DataObjectBuilder;
 import web_automation.test_flow.computer.OrderComputerFlow;
 import web_automation.tests.BaseTest;
@@ -16,11 +16,13 @@ public class BuyingCheapComputerTest extends BaseTest {
        orderComputerFlow.buildCompSpec();
        orderComputerFlow.addItemToCart();
        orderComputerFlow.verifyShoppingCartPage();
+       orderComputerFlow.agreeTOSAndCheckout();
+       orderComputerFlow.inputBillingAddress();
     }
 
     @DataProvider()
     public ComputerData[] computerData(){
-        String relativeComputerLocation = "/src/main/java/web_automation/test_data/CheapComputerDataList.json";
+        String relativeComputerLocation = "/src/main/java/web_automation/test_data/computer/CheapComputerDataList.json";
         return DataObjectBuilder.buildDataObjectForm(relativeComputerLocation, ComputerData[].class);
     }
 }

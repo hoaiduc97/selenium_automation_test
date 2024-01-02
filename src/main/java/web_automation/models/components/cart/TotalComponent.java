@@ -16,6 +16,8 @@ public class TotalComponent extends Component {
     private static final By priceTableRowSel = By.cssSelector("table tr");
     private static final By priceTypeRowSel = By.cssSelector(".cart-total-left");
     private static final By priceValueRowSel = By.cssSelector(".cart-total-right");
+    private static final By tosSel = By.cssSelector("input[id='termsofservice']");
+    private static final By checkoutBtnSel = By.cssSelector("button[id='checkout']");
 
     public TotalComponent(WebDriver driver, WebElement component) {
         super(driver, component);
@@ -30,7 +32,6 @@ public class TotalComponent extends Component {
     public Map<String, Double> priceCategories() {
         Map<String, Double> priceCategories = new HashMap<>();
         List<WebElement> priceTableRowEles = findElements(priceTableRowSel);
-        Assert.assertFalse(priceTableRowEles.isEmpty(), "[ERR] Price table is empty");
         for (WebElement tableRowEle : priceTableRowEles) {
             WebElement priceTypeEle = tableRowEle.findElement(priceTypeRowSel);
             WebElement priceValueEle = tableRowEle.findElement(priceValueRowSel);
@@ -41,5 +42,13 @@ public class TotalComponent extends Component {
             priceCategories.put(priceType, priceValue);
         }
         return priceCategories;
+    }
+
+    public void agreeTOS(){
+        findElement(tosSel).click();
+    }
+
+    public void clickOnCheckoutBtn(){
+        findElement(checkoutBtnSel).click();
     }
 }

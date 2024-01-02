@@ -3,7 +3,7 @@ package web_automation.tests.order.computer;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import web_automation.models.components.order.StandardComputerComponent;
-import web_automation.test_data.ComputerData;
+import web_automation.test_data.computer.ComputerData;
 import web_automation.test_data.DataObjectBuilder;
 import web_automation.test_flow.computer.OrderComputerFlow;
 import web_automation.tests.BaseTest;
@@ -16,6 +16,8 @@ public class BuyingStandardComputerTest extends BaseTest {
         orderComputerFlow.buildCompSpec();
         orderComputerFlow.addItemToCart();
         orderComputerFlow.verifyShoppingCartPage();
+        orderComputerFlow.agreeTOSAndCheckout();
+        orderComputerFlow.inputBillingAddress();
     }
 
     @DataProvider()
