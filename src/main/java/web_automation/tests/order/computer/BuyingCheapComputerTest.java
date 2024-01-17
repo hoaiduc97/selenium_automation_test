@@ -1,5 +1,6 @@
 package web_automation.tests.order.computer;
 
+import org.openqa.selenium.WebDriver;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import web_automation.models.components.order.CheapComputerComponent;
@@ -13,6 +14,7 @@ import web_automation.tests.BaseTest;
 public class BuyingCheapComputerTest extends BaseTest {
     @Test(dataProvider = "computerData")
     public void testBuyingCheapComputer(ComputerData computerData) {
+        WebDriver driver =getDriver();
         driver.get("https://demowebshop.tricentis.com/build-your-cheap-own-computer");
         OrderComputerFlow<CheapComputerComponent> orderComputerFlow = new OrderComputerFlow<>(driver, CheapComputerComponent.class, computerData);
         orderComputerFlow.buildCompSpec();

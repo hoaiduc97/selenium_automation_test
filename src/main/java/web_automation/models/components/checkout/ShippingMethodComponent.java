@@ -3,6 +3,7 @@ package web_automation.models.components.checkout;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import web_automation.models.components.Component;
 import web_automation.models.components.ComponentCSSSelector;
 
@@ -20,5 +21,6 @@ public class ShippingMethodComponent extends Component {
 
     public void clickOnContinueBtn(){
         findElement(continueBtnSel).click();
+        wait.until(ExpectedConditions.invisibilityOf(findElement(continueBtnSel)));
     }
 }

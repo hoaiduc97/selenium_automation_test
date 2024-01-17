@@ -19,22 +19,28 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
+import java.util.*;
 
 public class BaseTest {
-    protected static WebDriver driver;
+    private final static List<DriverFactory> webDriverThreadPool = Collections.synchronizedList(new ArrayList<>());
+    private static ThreadLocal<DriverFactory> driverThread;
+
+    protected WebDriver getDriver() {
+        return driverThread.get().getDriver();
+    }
 
     @BeforeTest
     protected void initBrowserSection() {
-        driver = DriverFactory.getWebDriver();
+        driverThread = ThreadLocal.withInitial(() -> {
+            DriverFactory threadDriverFactory = new DriverFactory();
+            webDriverThreadPool.add(threadDriverFactory);
+            return threadDriverFactory;
+        });
     }
 
     @AfterTest
     public void closeBrowserSection() {
-        if (driver != null) {
-            driver.quit();
-        }
+        driverThread.get().closeBrowserSession();
     }
 
     @AfterMethod
@@ -45,7 +51,7 @@ public class BaseTest {
         }
     }
 
-    private void attachScreenshotToReport(ITestResult result){
+    private void attachScreenshotToReport(ITestResult result) {
         // testMethodName-yyyy-mm-dd-hr-min-sec.png
 
         // 1. Get method name
@@ -60,15 +66,16 @@ public class BaseTest {
         int sec = calendar.get(Calendar.SECOND);
         String fileName = methodName + "-" + y + "-" + m + "-" + d + "-" + hr + "-" + min + "-" + sec + ".png";
         // 3. Take screenshot
+        WebDriver driver = driverThread.get().getDriver();
         File screenshotBase64Data = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        try{
+        try {
             // 4. Save
             String fileLocation = System.getProperty("user.dir") + "/screenshot" + fileName;
             FileUtil.copyFile(screenshotBase64Data, new File(fileLocation));
 
             //5. Attach into report
             Path content = Paths.get(fileLocation);
-            try(InputStream inputStream = Files.newInputStream(content)){
+            try (InputStream inputStream = Files.newInputStream(content)) {
                 Allure.addAttachment(methodName, inputStream);
             }
         } catch (Exception e) {
