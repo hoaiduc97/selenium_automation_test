@@ -54,7 +54,7 @@ public class PaymentInformationComponent extends Component {
 
     public void inputExpireMonth(String month) {
         Select select = new Select(findElement(cardExpireMonthDropDownSel));
-        select.selectByVisibleText("0" + month);
+        select.selectByVisibleText(month);
     }
 
     public void inputExpireYear(String year) {

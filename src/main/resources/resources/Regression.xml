@@ -3,7 +3,13 @@
 <suite name="Regression" verbose="1" >
     <test name="Footer">
         <classes>
-            <class name="tests.global.footer.FooterTest"/>
+            <class name="web_automation.tests.global.footer.FooterTest"/>
+        </classes>
+    </test>
+    <test name="Computer order">
+        <classes>
+            <class name="web_automation.tests.order.computer.BuyingCheapComputerTest"/>
+            <class name="web_automation.tests.order.computer.BuyingStandardComputerTest"/>
         </classes>
     </test>
 </suite>
