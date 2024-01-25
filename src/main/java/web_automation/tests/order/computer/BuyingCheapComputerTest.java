@@ -14,7 +14,7 @@ import web_automation.tests.BaseTest;
 public class BuyingCheapComputerTest extends BaseTest {
     @Test(dataProvider = "computerData")
     public void testBuyingCheapComputer(ComputerData computerData) {
-        WebDriver driver =getDriver();
+        WebDriver driver = getDriver();
         driver.get("https://demowebshop.tricentis.com/build-your-cheap-own-computer");
         OrderComputerFlow<CheapComputerComponent> orderComputerFlow = new OrderComputerFlow<>(driver, CheapComputerComponent.class, computerData);
         orderComputerFlow.buildCompSpec();

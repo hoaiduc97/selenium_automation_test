@@ -11,6 +11,7 @@ import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
 import web_automation.driver.DriverFactory;
 
 import java.io.File;
@@ -24,13 +25,16 @@ import java.util.*;
 public class BaseTest {
     private final static List<DriverFactory> webDriverThreadPool = Collections.synchronizedList(new ArrayList<>());
     private static ThreadLocal<DriverFactory> driverThread;
+    private String browser;
 
     protected WebDriver getDriver() {
-        return driverThread.get().getDriver();
+        return driverThread.get().getDriver(this.browser);
     }
 
-    @BeforeTest
-    protected void initBrowserSection() {
+    @BeforeTest(description = "Init browser session")
+    @Parameters({"browser"})
+    protected void initBrowserSection(String browser) {
+        this.browser = browser;
         driverThread = ThreadLocal.withInitial(() -> {
             DriverFactory threadDriverFactory = new DriverFactory();
             webDriverThreadPool.add(threadDriverFactory);
@@ -66,11 +70,11 @@ public class BaseTest {
         int sec = calendar.get(Calendar.SECOND);
         String fileName = methodName + "-" + y + "-" + m + "-" + d + "-" + hr + "-" + min + "-" + sec + ".png";
         // 3. Take screenshot
-        WebDriver driver = driverThread.get().getDriver();
+        WebDriver driver = driverThread.get().getDriver(this.browser);
         File screenshotBase64Data = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         try {
             // 4. Save
-            String fileLocation = System.getProperty("user.dir") + "/screenshot" + fileName;
+            String fileLocation = System.getProperty("user.dir") + "/screenshot/" + fileName;
             FileUtil.copyFile(screenshotBase64Data, new File(fileLocation));
 
             //5. Attach into report
